@@ -13,3 +13,18 @@
 ### 🧪 Testing
 - Verified dynamic rendering of property cards
 - Confirmed loading state and error handling
+
+## Task 1: API Integration for Property Detail Page
+
+### ✅ Setup
+- Used `axios` to fetch property details from `/api/properties/:id`
+- Extracted dynamic route ID using `useRouter`
+
+### 🔧 Implementation
+- Managed loading and error states with `useState`
+- Rendered dynamic data using `PropertyDetail` component
+- Updated `PropertyDetail.tsx` to accept and display API data
+
+### 🧪 Testing
+- Verified dynamic rendering of property details
+- Confirmed loading and error handling

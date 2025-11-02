@@ -36,6 +36,7 @@ const properties: Property[] = [
   },
 ];
 
+// GET /api/properties - Get all properties
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Property[] | { error: string }>
@@ -44,7 +45,7 @@ export default function handler(
     // Simulate API delay
     setTimeout(() => {
       res.status(200).json(properties);
-    }, 500);
+    }, 100);
   } catch (error) {
     console.error('Error fetching properties:', error);
     res.status(500).json({ error: 'Failed to fetch properties' });

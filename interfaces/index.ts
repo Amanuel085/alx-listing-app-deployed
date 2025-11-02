@@ -1,18 +1,22 @@
 export interface PropertyProps {
+  id: string;
   name: string;
-  address: {
+  location: string;
+  description?: string;
+  amenities?: string[];
+  rating: number;
+  price: number;
+  image: string;
+  address?: {
     state: string;
     city: string;
     country: string;
   };
-  rating: number;
-  category: string[];
-  price: number;
-  offers: {
+  category?: string[];
+  offers?: {
     bed: string;
     shower: string;
     occupants: string;
   };
-  image: string;
-  discount: string;
+  discount?: string;
 }
