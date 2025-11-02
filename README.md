@@ -28,3 +28,19 @@
 ### 🧪 Testing
 - Verified dynamic rendering of property details
 - Confirmed loading and error handling
+
+## Task 2: API Integration for Booking Page
+
+### ✅ Setup
+- Used `axios` to submit booking data to `/api/bookings`
+- Implemented form with fields for personal and payment details
+
+### 🔧 Implementation
+- Managed form state with `useState`
+- Added basic validation before submission
+- Displayed loading, success, and error states
+
+### 🧪 Testing
+- Verified form submission and success feedback
+- Confirmed validation blocks empty fields
+- Error message appears on failed API call
