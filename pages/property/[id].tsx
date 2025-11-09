@@ -17,8 +17,9 @@ export default function PropertyDetailPage() {
       
       try {
         setLoading(true);
-        // Update the API endpoint to the correct path
-        const response = await axios.get(`/api/properties?id=${id}`);
+        // Use the environment variable for the API base URL
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+        const response = await axios.get(`${baseUrl}/api/properties?id=${id}`);
         setProperty(response.data);
         setError(null);
       } catch (err) {

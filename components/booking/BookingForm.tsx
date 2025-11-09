@@ -42,7 +42,8 @@ const BookingForm = () => {
     setError(null);
 
     try {
-      const response = await axios.post('/api/bookings', {
+      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+      const response = await axios.post(`${baseUrl}/api/bookings`, {
         ...formData,
         propertyId: router.query.id,
         checkInDate: new Date().toISOString(), // You might want to get these from the URL or state

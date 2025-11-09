@@ -1,13 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
-interface Property {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  rating: number;
-  location: string;
-}
+import { PropertyProps as Property } from '@/interfaces';
 
 const properties: Property[] = [
   {

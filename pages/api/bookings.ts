@@ -15,9 +15,18 @@ export interface BookingRequest {
   totalPrice?: number;
 }
 
+interface BookingResponse {
+  id: string;
+  propertyId: string;
+  checkInDate: string;
+  checkOutDate: string;
+  totalPrice: number;
+  status: 'confirmed' | 'pending' | 'cancelled';
+}
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{ message: string; booking?: any } | { error: string }>
+  res: NextApiResponse<{ message: string; booking?: BookingResponse } | { error: string }>
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -38,11 +47,13 @@ export default async function handler(
     // 4. Send confirmation emails
 
     // For this example, we'll just simulate a successful booking
-    const booking = {
-      id: `B-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
-      ...bookingData,
-      bookingDate: new Date().toISOString(),
-      status: 'confirmed',
+    const newBooking: BookingResponse = {
+      id: Math.random().toString(36).substr(2, 9),
+      propertyId: bookingData.propertyId || 'unknown',
+      checkInDate: bookingData.checkInDate || new Date().toISOString(),
+      checkOutDate: bookingData.checkOutDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      totalPrice: bookingData.totalPrice || 0,
+      status: 'confirmed'
     };
 
     // Simulate API delay
@@ -50,7 +61,7 @@ export default async function handler(
 
     return res.status(201).json({
       message: 'Booking confirmed successfully!',
-      booking,
+      booking: newBooking,
     });
   } catch (error) {
     console.error('Error processing booking:', error);

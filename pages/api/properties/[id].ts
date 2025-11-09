@@ -1,5 +1,26 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Property } from '../properties';
+import { PropertyProps as Property } from '@/interfaces';
+
+// This is a helper function to get properties (moved from properties.ts)
+const getProperties = (): Property[] => [
+  {
+    id: '1',
+    name: 'Modern Apartment',
+    image: 'https://picsum.photos/600/400?random=1',
+    price: 120,
+    rating: 4.8,
+    location: 'New York, NY',
+  },
+  {
+    id: '2',
+    name: 'Cozy Studio',
+    image: 'https://picsum.photos/600/400?random=2',
+    price: 85,
+    rating: 4.5,
+    location: 'Brooklyn, NY',
+  },
+  // Add more properties as needed
+];
 
 export default function handler(
   req: NextApiRequest,
@@ -8,10 +29,8 @@ export default function handler(
   const { id } = req.query;
 
   try {
-    // Import the properties array from the main properties file
-    const { properties } = require('../properties');
-    
-    // Find the property with the matching ID
+    // Get properties and find the one with matching ID
+    const properties = getProperties();
     const property = properties.find((p: Property) => p.id === id);
 
     if (!property) {
